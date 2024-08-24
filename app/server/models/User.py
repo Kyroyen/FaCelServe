@@ -2,15 +2,21 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 class UserSchema(BaseModel):
-    id: str = Field(..., alias="_id")
-    interest:float = Field(..., lt=1.0, gt=0.0)
+    interest:float = Field(..., le=1.0, ge=0.0)
     
     class Config:
-        orm_mode = True
         schema_extra = {
             "example" : {
-                "id" : "23456789tyuio",
                 "interest" : 0.5
+            }
+        }
+
+class UpdateUserModel(BaseModel):
+    interest: Optional[float]
+    class Config:
+        schema_extra = {
+            "example" :{
+                "interest":"0.5"
             }
         }
 
