@@ -27,7 +27,7 @@ async def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(H
         user = await retrieve_user(payload["id"])
         if user is None:
             raise UserNotFoundError
-        return payload
+        return payload["id"]
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
     except jwt.InvalidTokenError:

@@ -6,12 +6,13 @@ import io
 from ..authentication.jwttoken import verify_jwt_token
 from ..models.User import UserSchema
 from ..handlers.user_handler import add_user
+from ..controllers.InterestControllers import predict_from_csv_file
 
 router = APIRouter()
 
 @router.post("/update")
 async def update_using_csv(csv_file: UploadFile = File(...), token: dict = Depends(verify_jwt_token)):
-    
+    await predict_from_csv_file(csv_file)
     return {"status":"success"}
 
 @router.post("/add-user")
