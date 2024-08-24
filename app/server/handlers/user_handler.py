@@ -21,7 +21,6 @@ async def add_user(user_data:dict) -> dict:
 
 async def retrieve_user(id:str):
     user = await user_collection.find_one({"_id": ObjectId(id)})
-    print("retrireved user",user)
     if user:
         return userReponseEntity(user)
     return None

@@ -2,11 +2,15 @@ from fastapi import HTTPException, Depends
 from datetime import datetime, timedelta
 import jwt
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from ..handlers.user_handler import retrieve_user
 from ..errors import UserNotFoundError
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+SECRET_KEY: str = os.environ.get("SECRET_KEY", "SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
