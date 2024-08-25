@@ -12,7 +12,17 @@ def user_helper(user):
         "id" : str(user['_id']),
         "interest" : user["interest"],
     }
-    
+
+async def update_user(id:str, data:dict):
+    updated_user = await user_collection.find_one_and_update(
+        {
+            "_id" : ObjectId(id)
+        },
+        {
+            "$set" : data
+        }
+    )
+    return True
 
 async def add_user(user_data:dict) -> dict:
     user = await user_collection.insert_one(user_data)

@@ -11,8 +11,8 @@ from ..controllers.InterestControllers import predict_from_csv_file
 router = APIRouter()
 
 @router.post("/update")
-async def update_using_csv(csv_file: UploadFile = File(...), token: dict = Depends(verify_jwt_token)):
-    await predict_from_csv_file(csv_file)
+async def update_using_csv(csv_file: UploadFile = File(...), user_id: str = Depends(verify_jwt_token)):
+    await predict_from_csv_file(user_id, csv_file)
     return {"status":"success"}
 
 @router.post("/add-user")

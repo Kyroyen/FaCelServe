@@ -12,7 +12,7 @@ from ..errors import UserNotFoundError
 
 SECRET_KEY: str = os.environ.get("SECRET_KEY", "SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 32000
 
 def create_access_token(data: dict):
     to_encode = data.copy()
@@ -21,7 +21,7 @@ def create_access_token(data: dict):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-async def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
+async def verify_jwt_token(credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())) -> str:
     try:
         payload = jwt.decode(credentials.credentials, SECRET_KEY, algorithms=["HS256"])
         user = await retrieve_user(payload["id"])
