@@ -1,9 +1,14 @@
 from bson.objectid import ObjectId
 
-from ..database import user_database
-from ..serializers.user_serializer import userReponseEntity
+import os, sys, inspect
 
-from ..handlers.student_handler import student_collection
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir) 
+
+from database import user_database
+from serializers.user_serializer import userReponseEntity
+
 
 user_collection = user_database.get_collection("user_collection")
 

@@ -1,0 +1,4 @@
+MONGO_DETAILS="mongodb://172.24.224.1:27017/"
+MODEL_PATH="./assets/haarcb.keras"
+BROKER_URI="redis://localhost:6379/0"
+BACKEND_URI="redis://localhost:6379/1"

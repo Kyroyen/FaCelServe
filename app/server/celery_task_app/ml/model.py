@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MODEL_PATH = os.environ.get("MODEL_PATH", "./app/server/assets/haarcb.keras")
+MODEL_PATH = os.environ.get("MODEL_PATH", "./assets/haarcb.keras")
 
 class ChurnModel:
     N_FEATURES = 3
